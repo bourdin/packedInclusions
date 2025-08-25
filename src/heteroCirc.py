@@ -95,7 +95,7 @@ print(Ys.std())
 
 for circ in circles:
     ax.plot(circ[0] + circ[2]*np.cos(U), circ[1] + circ[2]*np.sin(U), color = "black", linewidth = 1)
-plt.savefig(f"figs/{args.prefix}-000.pdf")
+plt.savefig(f"figures/{args.prefix}-000.pdf")
 
 
 if args.overwrite:

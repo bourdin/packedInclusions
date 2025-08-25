@@ -1,7 +1,7 @@
 time:
   min: -2.5
   max: 2.5
-  numstep: 21
+  numstep: 201
 boundaryDisplacement:
   scaling: expression
 stress:
