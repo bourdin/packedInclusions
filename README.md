@@ -1,6 +1,6 @@
 # Generation of sample data
 
-## 1. build the apptainer container
+## 1. Build the apptainer container
 
 Many HPC administrators want apptainer containers to be built on their host so that they can audit the recipes.
 ```shell
