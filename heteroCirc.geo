@@ -10,9 +10,10 @@ fissure_init = -Rreel*(1 + var*1.5); //Initial crack tip
 BigRadius = Rreel*(1+2*var);
 
 
-// lc1 = 0.005; //Finer mesh size
+lc1 = 0.005; //Finer mesh size
 // lc2 = 0.02;  //Coarse mesh size
-lc1 = 0.01; //Finer mesh size
+// lc1 = 0.01; //Finer mesh size
+lc1 = 0.0075;
 lc2 = 0.05;  //Coarse mesh size
 
 DL = L;

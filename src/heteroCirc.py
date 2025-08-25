@@ -22,12 +22,12 @@ args = parser.parse_args()
 d, nRot, R, var, SampleRadius, createCircleAttempts, seed = args.d, args.numRotations, args.R, args.var, args.SampleRadius, args.createAttempts, args.seed
 if seed:
     np.random.seed(seed)
-print(args)
+# print(args)
 
 minRadius, maxRadius = R*(1-var), R*(1+var)
 BIGDISKRADIUS = SampleRadius + maxRadius
 nb_circle = int(np.floor(d*BIGDISKRADIUS**2/R**2))
-print(nb_circle)
+print(f'num inclusions: {nb_circle}')
 
 circles = []
 
@@ -89,9 +89,9 @@ ax.set_yticks([-BIGDISKRADIUS, 0, +BIGDISKRADIUS]);
 ax.set_yticklabels([str(-BIGDISKRADIUS), "0", str(BIGDISKRADIUS)])
 ax.set_xticks([0])
 
-circlesOnAxis = circles[np.abs(circles[:,1])<=2*R]
-Ys = circlesOnAxis[:,1]/R
-print(Ys.std())
+# circlesOnAxis = circles[np.abs(circles[:,1])<=2*R]
+# Ys = circlesOnAxis[:,1]/R
+# print(Ys.std())
 
 for circ in circles:
     ax.plot(circ[0] + circ[2]*np.cos(U), circ[1] + circ[2]*np.sin(U), color = "black", linewidth = 1)

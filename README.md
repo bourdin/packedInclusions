@@ -17,18 +17,18 @@ $ apptainer run <apptainer container> python3 src/heteroCirc.py -n <n> --prefix 
 This will generate `n` meshes `meshes/<prefix>-<num>.msh`. Each mesh corresponds to a given microstructure rotated by an angle $2\pi/n$. The density and average radius of the inclusion can be controlled respectively with `--d` and `--R`.
 
 ## 3. Run computations
-For each generated mesh:
+Assuming that your cluster uses slurm as its scheduler: for each generated mesh:
 ```shell
-$ srun -n <num cores> apptainer run <apptainer container> vDef -geometry meshes/<prefix>.msh -result result/<prefix>.exo -options_file packedInclusions.yaml
+$ srun -n 128 apptainer run <apptainer container> vDef -geometry meshes/<prefix>.msh -result results/<prefix>.exo -options_file packedInclusions.yaml
 ```
-A good guideline is to pick num_cores of the order of number of vertices / 5000. The number of vertices in the mesh is printed during mesh generation
+128 cores is a reasonable size for the default size of the problems
 
 ## 4. Generate pictures and movies
 For *each* computation: 
 ```shell
 $ apptainer run <apptainer container> visit -cli -nowin -s src/plotFrames.py --BB -2.5  2.5  -2.5 2.5  results/<prefix>.exo 
 ```
-This will generate snapshots of the fracture evolution in the folder `<prefix>-Frames` and print a ffmpeg command that can be used to generate an animation of teh fracture evolution.
+This will generate snapshots of the fracture evolution in the folder `<prefix>-Frames` and print a ffmpeg command that can be used to generate an animation of the fracture evolution.
 The value 2.5 corresponds to default value of the parameter $R$ in step 2.
 
 ## 5. Compute and plot the $J$-integral
