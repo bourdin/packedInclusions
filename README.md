@@ -28,8 +28,8 @@ For *each* computation:
 ```shell
 $ apptainer run <apptainer container> visit -cli -nowin -s src/plotFrames.py --BB -2.5  2.5  -2.5 2.5  results/<prefix>.exo 
 ```
-This will generate `<prefix>.mp4` and `<prefix>.png` as well as snapshots of the fracture evolution in the folder `<prefix>-Frames`
-The value 2.5 corresponds to the parameter
+This will generate snapshots of the fracture evolution in the folder `<prefix>-Frames` and print a ffmpeg command that can be used to generate an animation of teh fracture evolution.
+The value 2.5 corresponds to default value of the parameter $R$ in step 2.
 
 ## 5. Compute and plot the $J$-integral
 For *each* computation
@@ -38,6 +38,6 @@ $ apptainer run <apptainer container> visit -cli -nowin -s src/Jint.py --bb -3 -
 ```
 This step can take a while and is not parallelized and will generate the file `results/<prefix>_Jint.txt`
 ```shell
-$ apptainer run <apptainer container> python3 plotJint.py -o results/<prefix>_Jint.pdf results/<prefix>_Jint.txt
+$ apptainer run <apptainer container> python3 src/plotJint.py -o results/<prefix>_Jint.pdf results/<prefix>_Jint.txt
 ```
 This will generate the file will generate the file `results/<prefix>_Jint.pdf`

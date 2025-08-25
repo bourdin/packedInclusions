@@ -24,7 +24,7 @@ def parse(args=None):
     
 
 def mytrapz(xy):
-    return np.trapz(xy[1::2], xy[0::2])
+    return np.trapezoid(xy[1::2], xy[0::2])
 
 def plot(opts):
     import json

@@ -16,8 +16,11 @@ def parse(args=None):
 def main():
     import matplotlib
     import numpy as np
+    import os.path
     options = parse()
 
+    prefix,ext = os.path.splitext(os.path.basename(options.inputfile.name))
+    prefix = prefix.rsplit('_',1)[0]
     energies=np.loadtxt(options.inputfile)
       
     if options.stepmin == None:
@@ -41,15 +44,15 @@ def main():
     fig = plt.figure(figsize=options.size)
     
     ### plot
-    plt.plot(energies[tmin:tmax,0],energies[tmin:tmax,1],'o',label=r'$J$')
+    plt.plot(energies[tmin:tmax,0],energies[tmin:tmax,1],'o-',label=r'$J$')
     plt.grid()
     plt.legend(loc=0)
     plt.xlabel('t')
-    plt.ylabel(r'RJ$')
+    plt.ylabel(r'$J$')
     if options.title:
         plt.title(options.title)
     else:
-        plt.title(r'$J$--integral vs. normalized time')
+        plt.title(f'{prefix}: $J$-integral vs. normalized time')
     #pymef90.setspines()
 
     ### export plot if needed

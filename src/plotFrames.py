@@ -272,18 +272,20 @@ def plot(options):
     import math
     
 
-    prefix,ext = os.path.splitext(options.inputfile)
-    FramesDir = f'{prefix}-Frames'
+    prefix,ext = os.path.splitext(os.path.basename(options.inputfile))
+    rootDir = os.path.realpath(os.path.dirname(options.inputfile))
+    FramesDir = os.path.join(rootDir,f'{prefix}-Frames')
+
     if not os.path.exists(FramesDir):
         os.makedirs(FramesDir)
 
     laststep = 1000000
     if options.step_max == 0:
-        enerfile = enerfile = prefix+'.ener'
+        enerfile = os.path.join(rootDir,f'{prefix}.ener')
         if os.path.exists(enerfile):
             laststep = getlaststep(enerfile)
         else:
-            enerfile = prefix.split('_out')[0]+'.ener'
+            enerfile = os.path.join(rootDir,f'{prefix}_out.ener')
             if os.path.exists(enerfile):
                 laststep = getlaststep(enerfile)
             else:
